@@ -24,7 +24,7 @@
       public function postAuth(string $username, string $password): ?string
       {
          // iam usin JWT for authentication
-         $this->post("/auth", ['username' => $username, 'password' => $password]);
+         $this->post("/auth", ['email' => $username, 'password' => $password]);
          $content = $this->client->getResponse()->getContent();
          // Decode as an associative array (with 'true' as the second argument)
          $decodedToken = json_decode($content, true);

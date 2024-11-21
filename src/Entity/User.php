@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['email'])]
 #[ApiResource(operations: [
     new GetCollection(
     ),
@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
    #[ORM\Column(length: 180)]
    #[Groups(['user:read', 'user:write'])]
-   private ?string $username = null;
+   private ?string $email = null;
 
    /**
     * @var list<string> The user roles
@@ -73,17 +73,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       return $this->id;
    }
 
-   public function getUsername(): ?string
+   public function getEmail(): ?string
    {
-      return $this->username;
+      return $this->email;
    }
 
-   public function setUsername(string $username): static
+   public function setEmail(?string $email): void
    {
-      $this->username = $username;
-
-      return $this;
+      $this->email = $email;
    }
+
+
 
    /**
     * A visual identifier that represents this user.
@@ -92,7 +92,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     */
    public function getUserIdentifier(): string
    {
-      return (string)$this->username;
+      return (string)$this->email;
    }
 
    /**

@@ -8,14 +8,14 @@
    {
 
       public function testPostUser(): void{
-         $username = faker()->userName();
-         $this->post("/api/users", ["username" => $username, "password" => $this->password]);
+         $username = faker()->email();
+         $this->post("/api/users", ["email" => $username, "password" => $this->password]);
          self::assertResponseIsSuccessful();
-
          $this->postAuth($username, $this->password);
+
+
          $json = $this->jsonResponse();
          dump($json);
-         dump("DUMP");
          self::assertResponseIsSuccessful();
       }
    }
