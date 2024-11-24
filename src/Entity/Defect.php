@@ -33,7 +33,7 @@
       #[Groups(['defect:read', 'defect:write'])]
       private ?string $location = null;
 
-      #[ORM\Column(length: 2550, nullable: true)]
+      #[ORM\Column(length: 255000, nullable: true)]
       #[Groups(['defect:read', 'defect:write'])]
       private ?string $contentUrl = null;
 

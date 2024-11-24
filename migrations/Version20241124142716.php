@@ -20,7 +20,7 @@ final class Version20241124142716 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE defect (id SERIAL NOT NULL, title VARCHAR(255) NOT NULL, description VARCHAR(255) DEFAULT NULL, location VARCHAR(255) DEFAULT NULL, content_url VARCHAR(2550) DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE defect (id SERIAL NOT NULL, title VARCHAR(255) NOT NULL, description VARCHAR(25500) DEFAULT NULL, location VARCHAR(255) DEFAULT NULL, content_url VARCHAR(2550) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE "user" (id SERIAL NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_IDENTIFIER_USERNAME ON "user" (email)');
     }
