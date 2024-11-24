@@ -3,6 +3,7 @@
    namespace App\Entity;
 
    use ApiPlatform\Metadata\ApiResource;
+   use App\Enum\categoryEnum;
    use App\Repository\DefectRepository;
    use Doctrine\Common\Collections\ArrayCollection;
    use Doctrine\Common\Collections\Collection;
@@ -32,6 +33,10 @@
       #[ORM\Column(length: 255, nullable: true)]
       #[Groups(['defect:read', 'defect:write'])]
       private ?string $location = null;
+
+      #[ORM\Column(length: 64, nullable: true, enumType: categoryEnum::class)]
+      #[Groups(['defect:read', 'defect:write'])]
+      private ?categoryEnum $category =  categoryEnum::algemeen;
 
       #[ORM\Column(length: 255000, nullable: true)]
       #[Groups(['defect:read', 'defect:write'])]
@@ -77,6 +82,18 @@
 
          return $this;
       }
+
+      public function getCategory(): ?categoryEnum
+      {
+         return $this->category;
+      }
+
+      public function setCategory(?categoryEnum $category): void
+      {
+         $this->category = $category;
+      }
+
+
 
       public function getContentUrl(): ?string
       {
